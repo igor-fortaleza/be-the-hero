@@ -1,6 +1,10 @@
 # Plataforma de Incidentes para ONGs
 
-Este projeto foi desenvolvido em 2020 como parte de um curso de ReactJS e JavaScript com Express. O objetivo é fornecer uma plataforma robusta que permite a ONGs gerenciar e visualizar incidentes e casos, facilitando a organização e o acesso à informação.
+Este projeto foi desenvolvido em 2020 junto ao curso da 11ª edição da Semana OmniStack de ReactJS e JavaScript com Express. O objetivo é fornecer uma plataforma robusta que permite a ONGs gerenciar e visualizar incidentes e casos, facilitando a organização e o acesso à informação.
+
+<p align="center">
+  <img src="./docs/tela_inicial.png" alt="Tela Principal">
+</p>
 
 ## Funcionalidades
 
