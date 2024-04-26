@@ -9,9 +9,13 @@ Este projeto foi desenvolvido em 2020 junto ao curso da 11ª edição da Semana 
 ## Funcionalidades
 
 - **Cadastro de ONGs**: Permite que organizações não governamentais se cadastrem na plataforma para gerenciar seus casos.
+
 - **Login de Usuários**: Autenticação de usuários para acesso seguro.
+
 - **Cadastro e Listagem de Casos**: ONGs podem cadastrar e listar incidentes, incluindo detalhes como descrição, data do incidente, e recursos necessários.
+
 - **Visualização de Detalhes do Caso**: Usuários podem visualizar detalhes de cada caso individualmente.
+
 - **Resposta aos Incidentes**: Facilita a comunicação entre a ONG e voluntários ou interessados em ajudar.
 
 ## Tecnologias Utilizadas
