@@ -1,81 +1,85 @@
-import React, {useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { FiArrowLeft } from 'react-icons/fi';
+import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { FiArrowLeft } from "react-icons/fi";
 
-import api from '../../services/api';
+import api from "../../services/api";
 
-import './style.css';
+import "./style.css";
 
-import logoImg from '../../assets/logo.svg';
+import logoImg from "../../assets/logo.svg";
 
-export default function NewIncident(){
+export default function NewIncident() {
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [value, setValue] = useState("");
 
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
-    const [value, setValue] = useState('');
+  const history = useHistory();
 
-    const history = useHistory();
+  const ongId = localStorage.getItem("ongId");
 
-    const ongId = localStorage.getItem('ongId');
+  async function handleNewIncident(e) {
+    e.preventDefault();
 
-    async function handleNewIncident(e) {
-        e.preventDefault();    
+    const data = {
+      title,
+      description,
+      value,
+    };
 
-        const data = {
-            title, 
-            description,
-            value,
-        };
+    try {
+      await api.post("/incidents", data, {
+        headers: {
+          Authorization: ongId,
+        },
+      });
 
-        try{
-             await api.post('/profile', data, {
-                 headers: {
-                     Authorization: ongId,
-                 }
-             });
-
-             history.push('/incidents');
-        } catch(err) {
-            alert('Erro ao cadastrar caso, tente novamente.')
-        }
+      history.push("/incidents");
+    } catch (err) {
+      alert("Erro ao cadastrar caso, tente novamente.");
     }
+  }
 
-    return (
-        <div className="new-incidet-container">
-        <div className="content">
-            <section>
-            <img src={logoImg} alt="Be The Hero" />
-                <h1>Cadastrar novo caso</h1>
-                <p>Descrever o caso detalhadamente para encontrar um herói para resolver isso.</p>
+  return (
+    <div className="new-incidet-container">
+      <div className="content">
+        <section>
+          <img src={logoImg} alt="Be The Hero" />
+          <h1>Cadastrar novo caso</h1>
+          <p>
+            Descrever o caso detalhadamente para encontrar um herói para
+            resolver isso.
+          </p>
 
-                <Link className="back-link" to="/profile">
-                    <FiArrowLeft size={16} color="#E02041"/>
-                    Voltar para home
-                </Link>
-            </section>
+          <Link className="back-link" to="/profile">
+            <FiArrowLeft size={16} color="#E02041" />
+            Voltar para home
+          </Link>
+        </section>
 
-            <form onSubmit={handleNewIncident}>
-                <input 
-                placeholder="Titulo do caso"
-                value={title}
-                onChange={e => setTitle(e.target.value)} />
+        <form onSubmit={handleNewIncident}>
+          <input
+            placeholder="Titulo do caso"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
 
-                <textarea 
-                placeholder="Descrição"
-                value={description}
-                onChange={ e => setDescription(e.target.value) }
-                 />
+          <textarea
+            placeholder="Descrição"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
 
-                <input
-                placeholder="Valor"
-                value={value}
-                onChange={e => setValue(e.target.value)}
-                />
+          <input
+            placeholder="Valor"
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+          />
 
-                <button className="button" type="submit">Cadastrar</button>
-
-            </form>
-        </div>
+          <button className="button" type="submit">
+            Cadastrar
+          </button>
+        </form>
+      </div>
     </div>
-    );
+  );
 }
